@@ -24,7 +24,7 @@ This repo contains the source to the back-end of the SimpleIOT framework.
 
 ### Installation Instructions
 
-- [Start here](https://simpleiot.github.io)
+- [Start here](https://awslabs.github.io/simpleiot-build)
 
 ### Install from Source
 
