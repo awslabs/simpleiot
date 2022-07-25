@@ -8,18 +8,18 @@
 ![](https://img.shields.io/badge/CDK-2.10.0-blue.svg?style=flat)
 ![](https://img.shields.io/badge/Postgres-11.9-blue.svg?style=flat)
 
-![](https://img.shields.io/badge/AWS-API Gateway-green.svg?style=flat)
+![](https://img.shields.io/badge/AWS-API%20Gateway-green?style=flat)
 ![](https://img.shields.io/badge/AWS-Cloudfront-green.svg?style=flat)
 ![](https://img.shields.io/badge/AWS-Cognito-green.svg?style=flat)
 ![](https://img.shields.io/badge/AWS-EC2-green.svg?style=flat)
 
-![](https://img.shields.io/badge/AWS-IOT Core-green.svg?style=flat)
+![](https://img.shields.io/badge/AWS-IOT%20Core-green?style=flat)
 ![](https://img.shields.io/badge/AWS-Lambda-green.svg?style=flat)
 ![](https://img.shields.io/badge/AWS-S3-green.svg?style=flat)
 ![](https://img.shields.io/badge/AWS-Timestream-green.svg?style=flat)
 
 
-This repo contains the source to the back-end of the SimpleIOT framework.
+This repo contains the source to the back-end of the SimpleIOT framework. It is here for those who want to install the system from source or work on the source.
 
 
 ### Installation Instructions
