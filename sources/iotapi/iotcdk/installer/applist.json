@@ -1,0 +1,47 @@
+[
+  {
+    "name": "NPM",
+    "home_url": "https://www.npmjs.com/",
+    "install_url": "https://www.npmjs.com/get-npm",
+    "update_url": "https://www.npmjs.com/get-npm",
+    "min_version": "6.14",
+    "version_cmd": "npm --version",
+    "version_regexp": "(\\d+\\.\\d+(?:\\.\\d+)?).*"
+  },
+  {
+    "name": "NodeJS",
+    "home_url": "https://nodejs.dev/",
+    "install_url": "https://nodejs.dev/learn/how-to-install-nodejs",
+    "update_url": "https://nodejs.dev/learn/how-to-install-nodejs",
+    "min_version": "14.13",
+    "version_cmd": "node --version",
+    "version_regexp": "[vV](\\d+\\.\\d+(?:\\.\\d+)?).*"
+  },
+  {
+    "name": "AWS CLI",
+    "home_url": "https://aws.amazon.com/cli/",
+    "install_url": "https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html",
+    "update_url": "https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html",
+    "min_version": "2.1",
+    "version_cmd": "aws --version",
+    "version_regexp": "aws-cli/(\\d+\\.\\d+(?:\\.\\d+)?).*"
+  },
+  {
+    "name": "AWS CDK",
+    "home_url": "https://aws.amazon.com/cdk/",
+    "install_url": "https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html",
+    "update_url": "https://medium.com/aws-architech/tooling-how-to-upgrade-aws-cdk-cli-cf94cc7e0a99",
+    "min_version": "1.85",
+    "version_cmd": "cdk --version",
+    "version_regexp": "(\\d+\\.\\d+(?:\\.\\d+)?).*"
+  },
+  {
+    "name": "GNU CMake",
+    "home_url": "https://www.gnu.org/software/make/",
+    "install_url": "https://www.gnu.org/software/make/",
+    "update_url": "https://www.gnu.org/software/make/",
+    "min_version": "3.80",
+    "version_cmd": "make --version",
+    "version_regexp": "GNU Make (\\d+\\.\\d+(?:\\.\\d+)?).*"
+  }
+]

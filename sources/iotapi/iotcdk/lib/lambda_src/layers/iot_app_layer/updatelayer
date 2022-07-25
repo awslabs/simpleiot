@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [ $# -eq 0 ]
+  then
+    echo "$0 -p {profile}"
+    exit 1
+fi
+
+while getopts p: flag
+do
+    case "${flag}" in
+        p) profile=${OPTARG};;
+    esac
+done
+
+rm iot_app_layer.zip
+./makezip.sh
+python3 ../lupdate.py --profile=$profile --name=iot_dev_app_layer --path=./iot_app_layer.zip --replace
+rm iot_app_layer.zip
+

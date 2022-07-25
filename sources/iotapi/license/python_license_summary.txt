@@ -1,0 +1,14 @@
+ Count  License                                                                                             
+ 1      Apache License 2.0                                                                                  
+ 13     Apache Software License                                                                             
+ 3      Apache Software License; BSD License                                                                
+ 1      Artistic License; GNU General Public License (GPL); GNU General Public License v2 or later (GPLv2+) 
+ 1      BSD                                                                                                 
+ 17     BSD License                                                                                         
+ 1      Freeware                                                                                            
+ 3      GNU Library or Lesser General Public License (LGPL)                                                 
+ 1      Historical Permission Notice and Disclaimer (HPND)                                                  
+ 25     MIT License                                                                                         
+ 1      MIT License; Python Software Foundation License                                                     
+ 1      Mozilla Public License 2.0 (MPL 2.0)                                                                
+ 1      Python Software Foundation License                                                                  

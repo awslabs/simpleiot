@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+// © 2022 Amazon Web Services, Inc. or its affiliates. All Rights Reserved.
+//
+// SimpleIOT project.
+// Author: Ramin Firoozye (framin@amazon.com)
+//
+require("source-map-support/register");
+const cdk = require("aws-cdk-lib");
+const iotcdk_stack_1 = require("../lib/iotcdk-stack");
+var path = require('path');
+let IOT_TEAM_PATH = process.env["IOT_TEAM_PATH"];
+let bootstrap_path = path.join(IOT_TEAM_PATH, "bootstrap.json");
+Promise.resolve().then(() => require(bootstrap_path)).then(bootstrap => {
+    const app = new cdk.App();
+    let env = { account: bootstrap.account, region: bootstrap.region };
+    new iotcdk_stack_1.IotcdkStack(app, 'Iotcdk', {
+        env: env
+    });
+});
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW90Y2RrLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiaW90Y2RrLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7OztBQUVBLDJFQUEyRTtBQUMzRSxFQUFFO0FBQ0YscUJBQXFCO0FBQ3JCLDZDQUE2QztBQUM3QyxFQUFFO0FBQ0YsdUNBQXFDO0FBQ3JDLG1DQUFtQztBQUduQyxzREFBa0Q7QUFFbEQsSUFBSSxJQUFJLEdBQUcsT0FBTyxDQUFDLE1BQU0sQ0FBQyxDQUFDO0FBRTNCLElBQUksYUFBYSxHQUFHLE9BQU8sQ0FBQyxHQUFHLENBQUMsZUFBZSxDQUFDLENBQUE7QUFDaEQsSUFBSSxjQUFjLEdBQUcsSUFBSSxDQUFDLElBQUksQ0FBQyxhQUFhLEVBQUUsZ0JBQWdCLENBQUMsQ0FBQTtBQUUvRCxxQ0FBTyxjQUFjLEdBQUUsSUFBSSxDQUFDLFNBQVMsQ0FBQyxFQUFFO0lBQ3BDLE1BQU0sR0FBRyxHQUFHLElBQUksR0FBRyxDQUFDLEdBQUcsRUFBRSxDQUFDO0lBQzFCLElBQUksR0FBRyxHQUFHLEVBQUUsT0FBTyxFQUFFLFNBQVMsQ0FBQyxPQUFPLEVBQUUsTUFBTSxFQUFFLFNBQVMsQ0FBQyxNQUFNLEVBQUUsQ0FBQztJQUVuRSxJQUFJLDBCQUFXLENBQUMsR0FBRyxFQUFFLFFBQVEsRUFBRTtRQUMzQixHQUFHLEVBQUUsR0FBRztLQUNYLENBQUMsQ0FBQztBQUNQLENBQUMsQ0FBQyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiIyEvdXNyL2Jpbi9lbnYgbm9kZVxuXG4vLyDCqSAyMDIyIEFtYXpvbiBXZWIgU2VydmljZXMsIEluYy4gb3IgaXRzIGFmZmlsaWF0ZXMuIEFsbCBSaWdodHMgUmVzZXJ2ZWQuXG4vL1xuLy8gU2ltcGxlSU9UIHByb2plY3QuXG4vLyBBdXRob3I6IFJhbWluIEZpcm9venllIChmcmFtaW5AYW1hem9uLmNvbSlcbi8vXG5pbXBvcnQgJ3NvdXJjZS1tYXAtc3VwcG9ydC9yZWdpc3Rlcic7XG5pbXBvcnQgKiBhcyBjZGsgZnJvbSAnYXdzLWNkay1saWInO1xuaW1wb3J0IHsgQ29uc3RydWN0IH0gZnJvbSAnY29uc3RydWN0cyc7XG5cbmltcG9ydCB7IElvdGNka1N0YWNrIH0gZnJvbSAnLi4vbGliL2lvdGNkay1zdGFjayc7XG5cbnZhciBwYXRoID0gcmVxdWlyZSgncGF0aCcpO1xuXG5sZXQgSU9UX1RFQU1fUEFUSCA9IHByb2Nlc3MuZW52W1wiSU9UX1RFQU1fUEFUSFwiXVxubGV0IGJvb3RzdHJhcF9wYXRoID0gcGF0aC5qb2luKElPVF9URUFNX1BBVEgsIFwiYm9vdHN0cmFwLmpzb25cIilcblxuaW1wb3J0KGJvb3RzdHJhcF9wYXRoKS50aGVuKGJvb3RzdHJhcCA9PiB7XG4gICAgY29uc3QgYXBwID0gbmV3IGNkay5BcHAoKTtcbiAgICBsZXQgZW52ID0geyBhY2NvdW50OiBib290c3RyYXAuYWNjb3VudCwgcmVnaW9uOiBib290c3RyYXAucmVnaW9uIH07XG5cbiAgICBuZXcgSW90Y2RrU3RhY2soYXBwLCAnSW90Y2RrJywge1xuICAgICAgICBlbnY6IGVudlxuICAgIH0pO1xufSk7XG4iXX0=

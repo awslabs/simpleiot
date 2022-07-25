@@ -1,0 +1,620 @@
+{
+  "Customer": [
+    
+  ],
+  "Device": [
+    {
+      "serial_number": "TP-0001",
+      "name": "DeckTemp",
+      "model": "TP1000"
+    },
+    {
+      "serial_number": "GW-0009",
+      "name": "WeatherGateway",
+      "model": "GW5000"
+    },
+    {
+      "serial_number": "TIE-0001",
+      "name": "Bob's Tie Fighter",
+      "model": "TIE-LN"
+    },
+    {
+      "serial_number": "TIE-DEMO01",
+      "name": "Demo Tie Fighter",
+      "model": "TIE-LN"
+    },
+    {
+      "serial_number": "SWR-01",
+      "name": "WeatherRackSF",
+      "model": "WeatherRack2"
+    }
+  ],
+  "Data": [
+    {
+      "project": "Sunshine",
+      "serial": "TIE-0001",
+      "name": "oil_pressure",
+      "value": "25.6"
+    },
+    {
+      "project": "Sunshine",
+      "serial": "SWR-01",
+      "name": "temperature",
+      "value": "0.0"
+    },
+    {
+      "project": "Sunshine",
+      "serial": "SWR-01",
+      "name": "avg_windspeed",
+      "value": "0.0"
+    },
+    {
+      "project": "Sunshine",
+      "serial": "SWR-01",
+      "name": "gust_windspeed",
+      "value": "0.0"
+    },
+    {
+      "project": "Sunshine",
+      "serial": "SWR-01",
+      "name": "wind_direction",
+      "value": "0.0"
+    },
+    {
+      "project": "Sunshine",
+      "serial": "SWR-01",
+      "name": "cumulative_rain",
+      "value": "0.0"
+    },
+    {
+      "project": "Sunshine",
+      "serial": "SWR-01",
+      "name": "humidity",
+      "value": "0.0"
+    },
+    {
+      "project": "Sunshine",
+      "serial": "SWR-01",
+      "name": "sunlight",
+      "value": "0.0"
+    },
+    {
+      "project": "Sunshine",
+      "serial": "SWR-01",
+      "name": "uv",
+      "value": "0.0"
+    }
+  ],
+  "DataType": [
+    {
+      "name": "oil_pressure",
+      "desc": "TIE Oil Pressure Sensor",
+      "model": "TIE-LN",
+      "data_type": "float",
+      "units": "psi",
+      "show_on_twin": true,
+      "data_position": "0.007624653309915463m 0.9928644229073791m -0.21207660597101552m",
+      "data_normal": "0.08463813425668953m 0.9565496665654686m -0.2790145545003657m",
+      "label_template": "{name}: {value} psi",
+      "ranges": "data range JSON goes here"
+    },
+    {
+      "name": "headlight",
+      "desc": "TIE Headlight",
+      "model": "TIE-LN",
+      "data_type": "string",
+      "units": "on",
+      "show_on_twin": true,
+      "data_position": "-0.051401334178434566m 0.010057814750976422m 1.0113269653309984m",
+      "data_normal": "0m -1.3435883843274954e-7m 0.9999999999999911m",
+      "label_template": "{name}: is {value}"
+    },
+    {
+      "name": "button",
+      "desc": "Button number",
+      "model": "HelloModel",
+      "data_type": "integer",
+      "show_on_twin": true
+    },
+    {
+      "name": "color",
+      "desc": "Color Value",
+      "model": "HelloModel",
+      "data_type": "string",
+      "show_on_twin": true
+    },
+    {
+      "name": "laser",
+      "desc": "TIE Laser Cannon",
+      "model": "TIE-LN",
+      "data_type": "string",
+      "units": "fire",
+      "show_on_twin": false,
+      "label_template": "{name}: is {value}"
+    },
+    {
+      "name": "avg_windspeed",
+      "desc": "Average Wind Speed",
+      "model": "WeatherRack2",
+      "data_type": "float",
+      "units": "mph",
+      "data_position": "0.1897654937164237m 7.816239000257244m 5.873194766082827m",
+      "data_normal": "0m 0.9990792121330799m 0.04290370477644409m",
+      "show_on_twin": true,
+      "label_template": "{name}: {value} mph"
+    },
+    {
+      "name": "gust_windspeed",
+      "desc": "Gust Wind Speed",
+      "model": "WeatherRack2",
+      "data_type": "float",
+      "units": "mph",
+      "data_position": "",
+      "data_normal": "",
+      "show_on_twin": true,
+      "label_template": "{name}: {value} mph"
+    },
+    {
+      "name": "wind_direction",
+      "desc": "Wind Direction",
+      "model": "WeatherRack2",
+      "data_type": "float",
+      "units": "degrees",
+      "data_position": "-0.25923560524023515m 0.14929752388660722m 5.500806317744065m",
+      "data_normal": "-0.6463568392991309m 0.7629021716567875m -0.014251763841539032m",
+      "show_on_twin": true,
+      "label_template": "{name}: {value} deg"
+    },
+    {
+      "name": "cumulative_rain",
+      "desc": "Cumulative Rain",
+      "model": "WeatherRack2",
+      "data_type": "float",
+      "units": "in",
+      "data_position": "-0.2795731871168847m 5.6558729972924295m -4.204145317931134m",
+      "data_normal": "0.35615378509946094m 0.4681271470783763m 0.8087097473924668m",
+      "show_on_twin": true,
+      "label_template": "{name}: {value} in"
+    },
+    {
+      "name": "temperature",
+      "desc": "Temperature",
+      "model": "WeatherRack2",
+      "data_type": "float",
+      "units": "F",
+      "data_position": "0.9554952818783278m 2.8460106386052413m 2.221277033668551m",
+      "data_normal": "0.5907443814558647m 0.7544175190085409m 0.28613857270792065m",
+      "show_on_twin": true,
+      "label_template": "{name}: {value} F"
+    },
+    {
+      "name": "humidity",
+      "desc": "Humidity",
+      "model": "WeatherRack2",
+      "data_type": "float",
+      "units": "%",
+      "data_position": "-0.5523360173924523m 1.7388401319070839m 0.6456885633273257m",
+      "data_normal": "-0.2831040202572672m 0.7900557600708661m -0.5437499514418543m",
+      "show_on_twin": true,
+      "label_template": "{name}: {value} %"
+    },
+    {
+      "name": "sunlight",
+      "desc": "Visible Sunlight",
+      "model": "WeatherRack2",
+      "data_type": "float",
+      "units": "lux",
+      "data_position": "1.3934528849958419m 7.559923755622131m -0.08740992651693591m",
+      "data_normal": "0m 0.9990792121330799m 0.04290370477644409m",
+      "show_on_twin": true,
+      "label_template": "{name}: {value} lux"
+    },
+    {
+      "name": "uv",
+      "desc": "Ultraviolet",
+      "model": "WeatherRack2",
+      "data_type": "float",
+      "units": "index",
+      "data_position": "-0.2646562019543577m 5.291998101647282m -0.039437124081286634m",
+      "data_normal": "0m 0.9990792121330799m 0.04290370477644409m",
+      "show_on_twin": true,
+      "label_template": "{name}: {value} index"
+    }
+  ],
+  "Model": [
+    {
+      "project": "Sunshine",
+      "model": "TIE-LN",
+      "revision": "1.0.0",
+      "type": "device",
+      "display_name": "Tie Fighter",
+      "has_digital_twin": true,
+      "has_location_tracking": true,
+      "tracker_name": "iot_test_tracker",
+      "twin3d_model_url": "https://simpleiot-project-statics.s3-us-west-2.amazonaws.com/tie-fighter.glb",
+      "env_img_url": "https://simpleiot-project-statics.s3-us-west-2.amazonaws.com/aircraft_workshop_01_1k.hdr",
+      "sky_box_url": "https://simpleiot-project-statics.s3-us-west-2.amazonaws.com/aircraft_workshop_01_1k.hdr"
+    },
+    {
+      "project": "Sunshine",
+      "model": "HelloModel",
+      "revision": "1.0.0",
+      "type": "device",
+      "has_digital_twin": false
+    },
+    {
+      "project": "Sunshine",
+      "model": "T-65C-A2",
+      "type": "device",
+      "revision": "1.0.0",
+      "display_name": "X-wing starfighter",
+      "has_digital_twin": true,
+      "twin3d_model_url": "https://simpleiot-project-statics.s3-us-west-2.amazonaws.com/tie-fighter.glb",
+      "env_img_url": "https://simpleiot-project-statics.s3-us-west-2.amazonaws.com/abandoned_workshop_1k.hdr",
+      "sky_box_url": "https://simpleiot-project-statics.s3-us-west-2.amazonaws.com/dikhololo_night_2k.hdr"
+    },
+    {
+      "project": "Sunshine",
+      "model": "TP1000",
+      "type": "device",
+      "revision": "1.0.0",
+      "display_name": "Temperature Sensor",
+      "provision_location": "customer",
+      "provision_by": "customer",
+      "provision_via": "sms",
+      "provision_flow": "sms",
+      "update_push_via": "sms"
+    },
+    {
+      "project": "Sunshine",
+      "model": "GW5000",
+      "type": "gateway",
+      "revision": "1.0.0",
+      "display_name": "Sensor Gateway"
+    },
+    {
+      "project": "Sunshine",
+      "model": "WeatherRack2",
+      "type": "device",
+      "revision": "1.0.0",
+      "display_name": "Skyweather WeatherRack2 FT020T",
+      "has_digital_twin": true,
+      "twin3d_model_url": "https://simpleiot-project-statics.s3-us-west-2.amazonaws.com/ws.glb",
+      "env_img_url": "https://simpleiot-project-statics.s3-us-west-2.amazonaws.com/rocky_ridge_1k.hdr",
+      "sky_box_url": "https://simpleiot-project-statics.s3-us-west-2.amazonaws.com/rocky_ridge_1k.hdr"
+    }
+  ],
+  "Diagnostic": [
+    
+  ],
+  "DiagRecord": [
+    
+  ],
+  "Feature": [
+    {
+      "name": "led",
+      "class": "led_feature_class",
+      "project": "Sunshine"
+    }    
+  ],
+  "FeatureDef": [
+    
+  ],
+  "FeatureSet": [
+    
+  ],
+  "Firmware": [
+    
+  ],
+  "Location": [
+
+  ],
+  "Log": [
+    
+  ],
+  "LogRecord": [
+    
+  ],
+  "Maintainer": [
+    
+  ],
+  "MaintenanceTask": [
+    
+  ],
+  "Map": [
+    
+  ],
+  "Mobile": [
+    
+  ],
+  "OTA": [
+    
+  ],
+  "Part": [
+    
+  ],
+  "Project": [
+    {
+      "name": "Sunshine",
+      "desc": "Sample Project for SimpleIOT demo"
+    }
+  ],
+  "Role": [
+    {
+      "name": "Administrator",
+      "is_admin": true
+    },
+    {
+      "name": "User",
+      "is_admin": false
+    }
+  ],
+  "Setting": [
+    
+  ],
+  "Simulator": [
+    
+  ],
+  "SSH": [
+    
+  ],
+  "Template": [
+    {
+      "name": "TempSensorModel",
+      "desc": "Temperature Sensor Model",
+      "type": "model",
+      "icon": "tempsensor.png",
+      "author": "Ramin Firoozye",
+      "email": "framin@lab126.com",
+      "dev_url": "https://aws.amazon.com",
+      "license": "BSD 2.0",
+      "value": {
+          "model": {
+            "name": "HelloWorldModel",
+            "desc": "First device for directly connecting to the cloud",
+            "type": "device",
+            "icon": "image/helloworld.png",
+            "security": "device",
+            "storage": "none",
+            "protocol": "tcp,mqtt",
+            "connection": "direct",
+            "datatypes":[
+              {
+                "name": "button",
+                "desc": "Button number",
+                "data_type": "int",
+                "show_on_twin": true,
+                "label_template": "Button: {value}"
+              },
+              {
+                "name": "color",
+                "desc": "Screen background color",
+                "data_type": "string",
+                "show_on_twin": true
+              }
+            ]
+          }
+        }
+    },
+    {
+      "name": "HelloWorldM5",
+      "desc": "Hello World on an M5",
+      "type": "project",
+      "icon": "helloworld.png",
+      "author": "Ramin Firoozye",
+      "email": "framin@lab126.com",
+      "dev_url": "https://aws.amazon.com",
+      "license": "BSD 2.0",
+      "value": [
+        {
+          "model": {
+            "name": "HelloWorldModel",
+            "desc": "First device for directly connecting to the cloud",
+            "type": "device",
+            "icon": "image/helloworld.png",
+            "security": "device",
+            "storage": "none",
+            "protocol": "tcp,mqtt",
+            "connection": "direct",
+            "datatypes":[
+              {
+                "name": "button",
+                "desc": "Button number",
+                "data_type": "int",
+                "show_on_twin": true,
+                "label_template": "Button: {value}"
+              },
+              {
+                "name": "color",
+                "desc": "Screen background color",
+                "data_type": "string",
+                "show_on_twin": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "sensordemo",
+      "desc": "SensorDemo with an EduKit",
+      "type": "project",
+      "icon": "sensordemo.png",
+      "author": "Ramin Firoozye",
+      "email": "framin@lab126.com",
+      "dev_url": "https://aws.amazon.com",
+      "license": "BSD 2.0",
+      "value": [
+        {
+          "model": {
+            "name": "SensorDemoModel",
+            "desc": "Sensor Demo device with a rotary knob and a set of sensors",
+            "type": "device",
+            "icon": "image/sensordemo.png",
+            "security": "device",
+            "storage": "none",
+            "protocol": "tcp,mqtt",
+            "connection": "direct",
+            "datatypes":[
+              {
+                "name": "temperature",
+                "desc": "Temperature Value",
+                "data_type": "float",
+                "show_on_twin": true,
+                "label_template": "Tmp: {value}"
+              },
+              {
+                "name": "humidity",
+                "desc": "Humidity Value",
+                "data_type": "float",
+                "show_on_twin": true,
+                "label_template": "Hum: {value}"
+              },
+              {
+                "name": "pressure",
+                "desc": "Pressure Value",
+                "data_type": "float",
+                "show_on_twin": true,
+                "label_template": "Prs: {value}"
+              },
+              {
+                "name": "rotary",
+                "desc": "Rotary Knob Value",
+                "data_type": "int",
+                "show_on_twin": true,
+                "label_template": "Deg: {value}"
+              },
+              {
+                "name": "color",
+                "desc": "Screen background color",
+                "data_type": "string",
+                "show_on_twin": true
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "coldchain-direct",
+      "desc": "Template for creation of a direct-connected cold-chain measurement system",
+      "type": "project",
+      "icon": "cold_chain_direct_template.png",
+      "author": "Ramin Firoozye",
+      "email": "framin@lab126.com",
+      "dev_url": "https://aws.amazon.com",
+      "license": "BSD 2.0",
+      "value": [
+        {
+          "model": {
+            "name": "{project}-temp-sensor",
+            "desc": "Directly connected cold-chain sensor for project {project}-temp-gateway",
+            "type": "device",
+            "icon": "image/cold_chain_sensor_icon.png",
+            "security": "device",
+            "storage": "none",
+            "protocol": "tcp,mqtt",
+            "connection": "direct",
+            "datatypes":[
+              {
+                "name": "temperature",
+                "desc": "Temperature",
+                "data_type": "float",
+                "units": "F",
+                "show_on_twin": true,
+                "label_template": "{name}: {value} F"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "coldchain-gateway",
+      "desc": "Template for creation of cold-chain measurement system with a sensor and gateway",
+      "type": "project",
+      "icon": "image/cold_chain_gateway_template.png",
+      "author": "Ramin Firoozye",
+      "email": "framin@lab126.com",
+      "dev_url": "https://aws.amazon.com",
+      "license": "BSD 2.0",
+      "value": [
+        {
+          "model": {
+            "name": "{project}-temp-gateway",
+            "desc": "Cold-chain gateway for project {project}-temp-gateway",
+            "icon": "image/cold_chain_gateway_icon.png",
+            "type": "gateway",
+            "security": "device",
+            "storage": "none",
+            "protocol": "tcp,mqtt",
+            "connection": "direct"
+          }
+        },
+        {
+          "model": {
+            "name": "{project}-temp-sensor",
+            "desc": "Cold-chain temperature sensor for project {project}-temp-gateway",
+            "type": "device",
+            "icon": "image/cold_chain_sensor_gw_icon.png",
+            "security": "device",
+            "storage": "none",
+            "protocol": "tcp,mqtt",
+            "connection": "gateway",
+            "datatypes": [
+              {
+                "name": "temperature",
+                "desc": "Temperature",
+                "data_type": "float",
+                "units": "F",
+                "show_on_twin": true,
+                "label_template": "{name}: {value} F"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "Generator": [
+    {
+      "name": "hello-world-m5",
+      "desc": "ESP32 M5Stack HelloWorld",
+      "manufacturer": "espressif",
+      "processor": "esp32",
+      "os": "arduino",
+      "icon": "icon.png",
+      "contact": "user@email.com",
+      "source_root": "generator/templates/arduino/esp32/simpleiot_hello_world_arduino_esp32"
+    },
+    {
+      "name": "sensordemo",
+      "desc": "ESP32 M5Stack Sensor Demo",
+      "manufacturer": "espressif",
+      "processor": "esp32",
+      "os": "arduino",
+      "icon": "icon.png",
+      "contact": "user@email.com",
+      "source_root": "generator/templates/arduino/esp32/simpleiot_sensordemo_arduino_esp32"
+    }
+  ],
+  "SystemSettings": [
+    {
+      "name": "org_logo",
+      "value": "image/default_logo.png",
+      "desc": "Default Organization Logo"
+    },
+    {
+      "name": "default_model_icon",
+      "value": "image/paper_airplane.png",
+      "desc": "Default Model Icon"
+    }
+  ],
+  "User": [
+    {
+      "username": "extrauser",
+      "desc": "Extra Admin User",
+      "roles": "User"
+      }
+  ]
+}

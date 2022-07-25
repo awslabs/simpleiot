@@ -1,0 +1,12 @@
+jinja2
+aws-psycopg2
+cryptography
+pony
+pycparser
+requests
+semantic_version
+certifi
+chardet
+cffi
+cryptography
+six
