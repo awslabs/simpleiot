@@ -24,6 +24,7 @@ import zipfile
 import io
 import gzip
 import base64
+import mimetypes
 
 from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
@@ -245,11 +246,28 @@ def process_generator(project,
 
     for dirpath, dirs, files in os.walk(downloaded_generator_root):
         tempdir = os.path.join(temproot, generator.name)
-        #ldebug(f"Output TEMPDIR: {tempdir}")
+        # ldebug(f"Output TEMPDIR: {tempdir}")
         os.makedirs(tempdir, exist_ok=True)
         for filename in files:
             if filename.startswith('.'): continue
             srcname = os.path.join(dirpath, filename)
+
+            #
+            # If mimetype is text, we run it through template processor. Anything else, we skip it.
+            #
+            ftype_result = mimetypes.guess_type(srcname)
+            if ftype_result:
+                ftype = ftype_result[0]
+                ldebug(f"Filetype for {srcname} is {ftype}")
+                if not ftype:
+                    continue
+
+                if not ftype.startswith("text"):
+                    continue
+            else:
+                continue
+
+            #
             #
             # If it's an Arduino .ino file, the name of the file MUST match the outer directory.
             # so we rename the ino file to the name of the directory so the Arduino IDE doesn't
@@ -261,26 +279,26 @@ def process_generator(project,
             else:
                 dstname = os.path.join(tempdir, filename)
 
-            with open(srcname, "r") as input:
+            with open(srcname, "r", encoding="utf8") as input:
                 body = input.read()
-            #ldebug(f">>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-            #ldebug(f"InFile: {srcname}\n{body}")
-            #ldebug(f">>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+            # ldebug(f">>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+            # ldebug(f"InFile: {srcname}\n{body}")
+            # ldebug(f">>>>>>>>>>>>>>>>>>>>>>>>>>>>")
             rendered = jinja2.Template(open(srcname).read(), trim_blocks=True, lstrip_blocks=True).render(
                 generator_data)
-            #ldebug(f"<<<<<<<<<<<<<<<<<<<<<<<<<<<")
-            #ldebug(f"OutFile: {dstname}\n{rendered}")
-            #ldebug(f"<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+            # ldebug(f"<<<<<<<<<<<<<<<<<<<<<<<<<<<")
+            # ldebug(f"OutFile: {dstname}\n{rendered}")
+            # ldebug(f"<<<<<<<<<<<<<<<<<<<<<<<<<<<")
 
             with open(dstname, "w") as output:
                 output.write(rendered)
 
-            #ldebug(f" -- {srcname} -> {dstname}")
+            # ldebug(f" -- {srcname} -> {dstname}")
 
     output_zip_root = f"{generator.name}-{opsys_str}-{processor_str}"
     output_zip_name = f"{output_zip_root}.zip"
     output_zip_path = os.path.join(temproot, output_zip_name)
-    #ldebug(f"Generating zip to path: {output_zip_path} - file: {output_zip_name} - temproot: {temproot}")
+    # ldebug(f"Generating zip to path: {output_zip_path} - file: {output_zip_name} - temproot: {temproot}")
 
     zip_dir_to_file(output_zip_path, tempdir)
 
@@ -290,7 +308,7 @@ def process_generator(project,
 
     rootexists = os.path.exists(tempdir)
     exists = os.path.exists(output_zip_path)
-    #ldebug(f"Output zip: {output_zip_path} - root: {rootexists} - exists: {exists}")
+    # ldebug(f"Output zip: {output_zip_path} - root: {rootexists} - exists: {exists}")
 
     return temproot, output_zip_name, output_zip_path
 
