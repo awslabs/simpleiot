@@ -191,7 +191,7 @@ def add_record(params):
                                     iot_config_data = json.dumps(iot_data, indent=4)
                                 else:
                                     ldebug("ERROR: could not create IOT thing")
-                                    code = 428
+                                    code = 418
                                     result = {"status": "error", "message": "Could not create Device Record."}
                                     return code, json.dumps(result)
 
@@ -331,19 +331,19 @@ def add_record(params):
                                 db_data = format_device(None, None, device, False)
                                 result = {**iot_data, **db_data}
                             else:
-                                code = 428
+                                code = 418
                                 result = {"status": "error", "message": "Could not create Device Record."}
                         else:
-                            code = 428
+                            code = 418
                             result = {"status": "error", "message": "Could not create Device. NO IOT Settings"}
                     else:
-                        code = 409
+                        code = 418
                         result = {"status": "error", "message": f"Device serial number '{serial}' already in project"}
                 else:
-                    code = 428
+                    code = 418
                     result = {"status": "error", "message": "Invalid model. Device could not be created"}
             else:
-                code = 428
+                code = 418
                 result = {"status": "error", "message": "Invalid Project. Device could not be created"}
     except Exception as e:
         traceback.print_exc()

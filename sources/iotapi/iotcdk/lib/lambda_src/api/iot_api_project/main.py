@@ -308,7 +308,7 @@ def add_record(params):
             else:
                 result = {"status": "ok", "id": project.id.hex}
         else:
-            code = 428
+            code = 418
             result = {"status": "error", "message": "Missing name. Project could not be created"}
 
     except pony.orm.core.TransactionIntegrityError as e:
