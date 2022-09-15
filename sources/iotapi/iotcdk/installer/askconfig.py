@@ -310,7 +310,14 @@ def configure_with_cognito(team):
 
         b3 = boto3.session.Session(profile_name=aws_profile)
         account = b3.client('sts').get_caller_identity().get('Account')
+        if not account:
+            print(f"ERROR: No valid account associated with profile. Please correct and run again.")
+            return None
+
         region = b3.region_name
+        if not region:
+            print(f"ERROR: No valid region associated with profile. Please correct and run again.")
+            return None
 
         org_name = os.getenv('IOT_INSTALL_ORG_NAME', None)
         if not org_name:
