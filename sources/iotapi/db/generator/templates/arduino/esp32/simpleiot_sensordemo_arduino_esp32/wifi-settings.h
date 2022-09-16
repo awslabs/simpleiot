@@ -1,6 +1,6 @@
 /*
  * © 2021 Amazon Web Services, Inc. or its affiliates. All Rights Reserved.
- * 
+ *
  * Update these with your own WiFi credentials
  */
 

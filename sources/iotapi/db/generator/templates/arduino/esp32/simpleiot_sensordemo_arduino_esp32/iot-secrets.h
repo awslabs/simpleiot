@@ -34,4 +34,3 @@ static const char SIMPLE_IOT_DEVICE_PRIVATE_KEY[] PROGMEM = R"KEY(
 )KEY";
 
 #endif /* __SIMPLEIOT_SECRETS__ */
-
