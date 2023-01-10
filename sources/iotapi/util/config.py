@@ -47,6 +47,7 @@ import traceback
 from pathlib import Path
 from questionary import Validator, ValidationError, prompt
 from datetime import datetime
+import unicodedata
 
 SIMPLEIOT_LOCAL_ROOT = "~/.simpleiot"
 DEFAULT_TEAM = "simpleiot"
@@ -65,6 +66,9 @@ IOT_ROOTCA_NAME = "ca_pem_name"
 IOT_PUBLIC_KEY_NAME = "public_key_name"
 IOT_PRIVATE_KEY_NAME = "private_key_name"
 IOT_CERT_KEY_NAME = "cert_pem_name"
+
+#
+MAX_CHARACTERS_IN_SANITIZED_NAME = 100
 
 
 # This just makes sure the directory structure is set up properly, and has proper access
@@ -977,3 +981,26 @@ def get_secret(config, name):
             return json.loads(secret)
         else:
             return None
+
+#
+# This is based on Django's 'slugify' function, removing characters that might interfere with
+# system operations. It automatically filters out punctuation, unicode, and leading/trailing
+# whitespace, dashes, and underscores. We convert unicode characters to their ASCII equivalents
+# (or strip them out) since the end-node devices are likely to be resource constrained and may
+# not be able to handle them. Also, if you want to use a user-entered value to create a directory
+# name. We do maintain case-sensitivity, however.
+#
+# Especially useful, also, is for terms that are embedded inside MQTT topic strings. There's
+# potential for malicious behavior if these values have embedded '#' and '*' wildcard characters.
+#
+# This function strips all that out. Note that we intentionally don't trap exceptions so they
+# bubble up to the caller.
+#
+# To avoid buffer-overflow, we also clamp the size to a maximum size.
+#
+def sanitize(value):
+    value = str(value)
+    value = value[0:MAX_CHARACTERS_IN_SANITIZED_NAME]
+    value = (unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii"))
+    value = re.sub(r"[^\w\s-]", "", value)
+    return re.sub(r"[-\s]+", "-", value).strip("-_")

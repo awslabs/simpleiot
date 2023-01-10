@@ -418,6 +418,8 @@ export class IotcdkStack extends cdk.Stack {
                       httpsPort: config.https_tcp_port,
                       dbUsername: config.db_username,
                       dbPasswordKey: config.db_password_key,
+                      allocatedStorage: config.db_storage_size_gb,
+                      maxAllocatedStorage: config.db_max_storage_size_gb,
                       dbName: config.db_name,
                       keypairName: config.bastion_ssh_ec2_keypair_name,
                       maxGeneratedPasswordLength: MAX_DB_GENERATED_PASSWORD_LENGTH
