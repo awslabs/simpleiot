@@ -106,7 +106,11 @@ RUN sudo yum update ca-certificates
 #
 WORKDIR /home
 
-RUN curl -sL https://rpm.nodesource.com/setup_lts.x -o /tmp/nodesource_setup.sh
+# RUN sudo yum --enablerepo=nodesource clean metadata
+#RUN sudo yum install nodejs -y
+
+#RUN curl -sL https://rpm.nodesource.com/setup_lts.x -o /tmp/nodesource_setup.sh
+RUN curl -sL https://rpm.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh
 RUN sudo bash /tmp/nodesource_setup.sh
 RUN sudo yum install nodejs -y
 

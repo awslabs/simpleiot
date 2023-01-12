@@ -43,7 +43,7 @@ DEFAULTS_CONFIG_PATH = os.path.abspath(os.path.join("iotcdk", "installer", "defa
 #
 # If so, you are responsible for deleting the stacks.
 #
-PREVENT_ROLLBACK_ON_FAIL_FOR_DEBUGGING = False
+PREVENT_ROLLBACK_ON_FAIL_FOR_DEBUGGING = True
 
 #
 # If False, we use a single RDS/Aurora instance. If True, we create an Aurora serverless cluster.
@@ -524,6 +524,40 @@ def cleanup_bootstrap_and_local_artifacts(c, team, aws_profile):
     else:
         print(f"Local settings for team [{team}] not found.")
 
+
+#
+# Certain organization rules add an SSM policy to IAM roles AFTER a stack has been created.
+# This will prevent CDK to delete the stack when cleaning. For an example, see:
+# https://github.com/aws/aws-cdk/issues/15024
+#
+# You can manually delete the added policy using the AWS CLI, but we use the boto3 SDK
+# to do the same thing:
+#
+def clean_stray_ssm_policy_roles(aws_profile):
+    try:
+        import boto3
+        session = boto3.Session(profile_name=aws_profile)
+        client = session.client('iam')
+
+        roles = []
+        response = client.list_roles()
+        roles.extend(response['Roles'])
+        while 'Marker' in response.keys():
+            response = client.list_roles(Marker=response['Marker'])
+            roles.extend(response['Roles'])
+
+        for role in roles:
+            role_name = role['RoleName']
+            if "dbbastionhostInstance" in role_name:
+                client.detach_role_policy(RoleName=role_name,
+                                          PolicyArn='arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore')
+                print(f"Extra attached role policy deleted.")
+                break
+    except Exception as e:
+        print("ERROR: could not remove extra policy from bastion IAM role.\n"
+              "       This might prevent the stack from getting cleaned up properly.")
+        print(e)
+        exit(0)
 #
 # Clean up the installation. This invokes a CDK clean but also performs
 # local cleanup tasks. If the stack was run BEFORE cdk deploy was finished
@@ -553,6 +587,7 @@ def clean(c, team):
         if Path(config_path).exists():
             my_ip = get_my_ip()
             print(f"Cleaning up the cloud stack for team: {team}")
+            clean_stray_ssm_policy_roles(aws_profile)
             result = c.run(f"export IOT_DEFAULTS_FILE='{DEFAULTS_CONFIG_PATH}'; \
                         export IOT_TEAM_PATH='{team_path}'; \
                         export MY_IP='{my_ip}'; \
