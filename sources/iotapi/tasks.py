@@ -43,7 +43,7 @@ DEFAULTS_CONFIG_PATH = os.path.abspath(os.path.join("iotcdk", "installer", "defa
 #
 # If so, you are responsible for deleting the stacks.
 #
-PREVENT_ROLLBACK_ON_FAIL_FOR_DEBUGGING = True
+PREVENT_ROLLBACK_ON_FAIL_FOR_DEBUGGING = False
 
 #
 # If False, we use a single RDS/Aurora instance. If True, we create an Aurora serverless cluster.
@@ -300,6 +300,9 @@ def deploy(c, team=None):
 
             #print(f"Outbound IP address: {my_ip}")
 
+            # NOTE: added TMP creation before 'cdk deploy' to avoid docker filessytem issues
+            # reported on this ticket on CDK: https://github.com/aws/aws-cdk/issues/21379
+            #
             result = c.run(f"export IOT_DEFAULTS_FILE='{DEFAULTS_CONFIG_PATH}'; \
                     export IOT_TEAM_PATH='{team_path}'; \
                     export MY_IP='{my_ip}'; \
@@ -308,7 +311,7 @@ def deploy(c, team=None):
                     export DATABASE_USE_AURORA='{DATABASE_USE_AURORA}'; \
                     cd iotcdk; \
                     npm run build; \
-                    cdk deploy {stack_config} \
+                    mkdir tmp && export TMP=$PWD/tmp && cdk deploy {stack_config} \
                         --profile {aws_profile} \
                         --require-approval never \
                         {rollback} \
@@ -531,7 +534,9 @@ def cleanup_bootstrap_and_local_artifacts(c, team, aws_profile):
 # https://github.com/aws/aws-cdk/issues/15024
 #
 # You can manually delete the added policy using the AWS CLI, but we use the boto3 SDK
-# to do the same thing:
+# to do the same thing.
+#
+# NOTE: we ignore exceptions, in case this is not an issue, it will continue working as normal.
 #
 def clean_stray_ssm_policy_roles(aws_profile):
     try:
@@ -554,10 +559,7 @@ def clean_stray_ssm_policy_roles(aws_profile):
                 print(f"Extra attached role policy deleted.")
                 break
     except Exception as e:
-        print("ERROR: could not remove extra policy from bastion IAM role.\n"
-              "       This might prevent the stack from getting cleaned up properly.")
-        print(e)
-        exit(0)
+        pass
 #
 # Clean up the installation. This invokes a CDK clean but also performs
 # local cleanup tasks. If the stack was run BEFORE cdk deploy was finished
