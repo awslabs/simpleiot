@@ -36,14 +36,21 @@ LICENSE_DIR = "license"
 DEFAULTS_CONFIG_PATH = os.path.abspath(os.path.join("iotcdk", "installer", "defaults.json"))
 
 #
-# This should ordinarily be false, so if installation fails, CDK tries to clean up the stack.
-# But if something breaks badly and you need to go inspect the stack, set this to True.
-# It will add a --no-rollback flag to cdk deploy so the stacks are kept in place and you can
-# go look at the logs and resources to help debug problems.
+# This should ordinarily be True, so if installation fails, CDK tries to clean up the stack.
+# You still should run 'invoke clean --team={team}' to clean up the keypairs, etc that were
+# created before the CDK was invoked.
 #
-# If so, you are responsible for deleting the stacks.
+# If something breaks badly and you need to go inspect the stack, set this to False.
+# You can do it here, or via the command line or by running bootstrap then deploy and passing
+# rollback=False to the deploy command).
 #
-PREVENT_ROLLBACK_ON_FAIL_FOR_DEBUGGING = False
+# If set to False, it will add a --no-rollback flag to cdk deploy so the stacks are kept in place
+# and you can go look at the logs and resources to help debug problems.
+#
+# If this is set to False, you are responsible for deleting the stacks manually in
+# the CloudFormation console.
+#
+ROLLBACK_ON_FAIL = True
 
 #
 # If False, we use a single RDS/Aurora instance. If True, we create an Aurora serverless cluster.
@@ -265,14 +272,14 @@ def bootstrap(c, team=None):
 # NOTE: at this stage we require a team name to proceed.
 #
 @task()
-def deploy(c, team=None):
-    global PREVENT_ROLLBACK_ON_FAIL_FOR_DEBUGGING
+def deploy(c, team=None, rollback=True):
+    global ROLLBACK_ON_FAIL
 
     start_time = timer()
     iot_endpoint = None
     cert_path = None
 
-    if PREVENT_ROLLBACK_ON_FAIL_FOR_DEBUGGING:
+    if not ROLLBACK_ON_FAIL:
         rollback = "--no-rollback"
     else:
         rollback = ""

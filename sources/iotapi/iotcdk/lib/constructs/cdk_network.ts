@@ -30,12 +30,19 @@ export class CDKNetwork extends cdk.NestedStack {
         super(scope, id);
         Common.addTags(this, props.tags)
 
-        let vpcName = props.prefix + "_vpc_";
+        let vpcName = props.prefix + "_vpc_" + props.uuid;
+        let privateSubnetName = props.prefix + "_iotprv_" + props.uuid;
+        let publicSubnetName = props.prefix + "_iotpub_" + props.uuid;
         this.vpc = new ec2.Vpc(this, vpcName, {
-            // subnetConfiguration: [{
-            //     name: 'simpleiot',
-            //     subnetType: SubnetType.PRIVATE_ISOLATED
-            // }]
+            subnetConfiguration: [{
+                name: privateSubnetName,
+                subnetType: SubnetType.PRIVATE_ISOLATED
+            },
+            {
+                name: publicSubnetName,
+                subnetType: SubnetType.PUBLIC
+            }
+            ]
         });
 
         // Add service endpoints we need to the VPC.
