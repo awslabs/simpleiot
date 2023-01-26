@@ -10,6 +10,7 @@ from invoke.executor import Executor
 
 import json
 import os
+import random
 import requests
 from urllib.parse import urlparse
 from rich import print
@@ -310,6 +311,9 @@ def deploy(c, team=None, rollback=True):
             # NOTE: added TMP creation before 'cdk deploy' to avoid docker filessytem issues
             # reported on this ticket on CDK: https://github.com/aws/aws-cdk/issues/21379
             #
+            random_tmp_suffix = int(random.random()*10000000000000)
+            tmp_dir = f"tmp-{random_tmp_suffix}"
+
             result = c.run(f"export IOT_DEFAULTS_FILE='{DEFAULTS_CONFIG_PATH}'; \
                     export IOT_TEAM_PATH='{team_path}'; \
                     export MY_IP='{my_ip}'; \
@@ -318,7 +322,7 @@ def deploy(c, team=None, rollback=True):
                     export DATABASE_USE_AURORA='{DATABASE_USE_AURORA}'; \
                     cd iotcdk; \
                     npm run build; \
-                    mkdir tmp && export TMP=$PWD/tmp && cdk deploy {stack_config} \
+                    mkdir {tmp_dir} && export TMP=$PWD/{tmp_dir} && cdk deploy {stack_config} \
                         --profile {aws_profile} \
                         --require-approval never \
                         {rollback} \
