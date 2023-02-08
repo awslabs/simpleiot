@@ -36,7 +36,7 @@ export class CDKNetwork extends cdk.NestedStack {
         this.vpc = new ec2.Vpc(this, vpcName, {
             subnetConfiguration: [{
                 name: privateSubnetName,
-                subnetType: SubnetType.PRIVATE_ISOLATED
+                subnetType: SubnetType.PRIVATE_WITH_NAT
             },
             {
                 name: publicSubnetName,

@@ -781,6 +781,7 @@ export class CDKLambda extends cdk.NestedStack {
             functionName: functionName,
             role: lambdaRole,
             vpc: props.vpc,
+            vpcSubnets: { subnetType: ec2.SubnetType.PRIVATE_WITH_NAT },
             timeout: cdk.Duration.seconds(props.lambdaTimeOutSecs),
             securityGroups: [props.securityGroup, props.dbSecurityGroup],
             code: new lambda.AssetCode(pathToLambda),

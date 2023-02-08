@@ -158,7 +158,7 @@ export class CDKDatabase extends cdk.NestedStack {
                       vpc: props.vpc,
                       securityGroups: [this.dbSecurityGroup],
                       vpcSubnets: {
-                          subnetType: ec2.SubnetType.PRIVATE_ISOLATED
+                          subnetType: ec2.SubnetType.PRIVATE_WITH_NAT
                       }
                   },
               }
@@ -183,7 +183,7 @@ export class CDKDatabase extends cdk.NestedStack {
               vpc: props.vpc,
               databaseName: props.dbName,
               vpcSubnets: {
-                  subnetType: ec2.SubnetType.PRIVATE_ISOLATED
+                  subnetType: ec2.SubnetType.PRIVATE_WITH_NAT
               },
               port: parseInt(props.dbPort),
               engine: engine,
