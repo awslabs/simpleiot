@@ -15,7 +15,7 @@ idna==2.10
 iniconfig==1.1.1
 jmespath==0.10.0
 packaging==20.4
-paramiko==2.10.1
+paramiko==3.4.0
 pluggy==0.13.1
 psycopg2-binary==2.8.6
 py==1.10.0
